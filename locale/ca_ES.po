@@ -1,0 +1,14 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.account,different_party_reconcile:"
+msgid "Different Party Reconciliation"
+msgstr "Concilia tercers diferents"
+
+msgctxt "help:account.account,different_party_reconcile:"
+msgid ""
+"Allow move lines of this account to be reconciled despite having different "
+"party."
+msgstr ""
+"Permet conciliar apunts d'aquest compte malgrat tinguin tercers diferents."
