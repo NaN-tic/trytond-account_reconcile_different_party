@@ -1,6 +1,6 @@
-============================================
-Conciliación de apuntes con distinto tercero
-============================================
+==========================================================
+Contabilidad. Conciliación de apuntes con distinto tercero
+==========================================================
 
 Este módulo permite conciliar apuntes de cuentas contables específicas aunque
 tengan un tercero distinto.
