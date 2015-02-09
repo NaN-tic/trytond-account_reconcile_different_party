@@ -9,5 +9,6 @@ from .move import *
 def register():
     Pool.register(
         Account,
+        Line,
         Reconciliation,
         module='account_reconcile_different_party', type_='model')

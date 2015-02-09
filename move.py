@@ -3,8 +3,33 @@
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
 
-__all__ = ['Reconciliation']
+__all__ = ['Line', 'Reconciliation']
 __metaclass__ = PoolMeta
+
+
+class Line():
+    __name__ = 'account.move.line'
+
+    @classmethod
+    def __setup__(cls):
+        super(Line, cls).__setup__()
+        if cls.party.states.get('invisible'):
+            cls.party.states.pop('invisible')
+
+    def on_change_account(self):
+        changes = super(Line, self).on_change_account()
+        # Not remove party if account is not party required
+        if changes.get('party'):
+            changes.pop('party')
+        return changes
+
+    def check_account(self):
+        try:
+            super(Line, self).check_account()
+        except:
+            # Not raise if there is a party and account is not party required
+            if self.account.party_required or not self.party:
+                raise
 
 
 class Reconciliation():
