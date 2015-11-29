@@ -15,11 +15,11 @@ class AccountReconcileDifferentPartyTestCase(unittest.TestCase):
             'account_reconcile_different_party')
 
     def test0005views(self):
-        '''Test views'''
+        'Test views'
         test_view('account_reconcile_different_party')
 
     def test0006depends(self):
-        '''Test depends'''
+        'Test depends'
         test_depends()
 
 
