@@ -2,6 +2,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
+from trytond.model import fields
 
 __all__ = ['Line', 'Reconciliation']
 __metaclass__ = PoolMeta
@@ -15,6 +16,14 @@ class Line():
         super(Line, cls).__setup__()
         if cls.party.states.get('invisible'):
             cls.party.states.pop('invisible')
+
+    @fields.depends('party')
+    def on_change_account(self):
+        party = self.party
+        super(Line, self).on_change_account()
+        # Not remove party if account is not party required
+        if party:
+            self.party = party
 
     def check_account(self):
         try:
