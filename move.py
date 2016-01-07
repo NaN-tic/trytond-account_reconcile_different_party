@@ -16,12 +16,6 @@ class Line():
         if cls.party.states.get('invisible'):
             cls.party.states.pop('invisible')
 
-    def on_change_account(self):
-        super(Line, self).on_change_account()
-        # Not remove party if account is not party required
-        if self.party:
-            self.party = None
-
     def check_account(self):
         try:
             super(Line, self).check_account()
