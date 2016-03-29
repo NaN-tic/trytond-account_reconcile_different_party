@@ -5,10 +5,10 @@ from trytond.pool import PoolMeta
 from trytond.model import fields
 
 __all__ = ['Line', 'Reconciliation']
-__metaclass__ = PoolMeta
 
 
-class Line():
+class Line:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line'
 
     @classmethod
@@ -34,7 +34,8 @@ class Line():
                 raise
 
 
-class Reconciliation():
+class Reconciliation:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.reconciliation'
 
     @classmethod
