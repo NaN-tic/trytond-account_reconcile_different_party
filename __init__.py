@@ -2,13 +2,13 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import Pool
-from .account import *
-from .move import *
+from . import account
+from . import move
 
 
 def register():
     Pool.register(
-        Account,
-        Line,
-        Reconciliation,
+        account.Account,
+        move.Line,
+        move.Reconciliation,
         module='account_reconcile_different_party', type_='model')

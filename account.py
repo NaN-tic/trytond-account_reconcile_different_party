@@ -9,7 +9,8 @@ class Account:
     __metaclass__ = PoolMeta
     __name__ = 'account.account'
 
-    different_party_reconcile = fields.Boolean('Different Party Reconciliation',
+    different_party_reconcile = fields.Boolean(
+        'Different Party Reconciliation',
         help='Allow move lines of this account to be reconciled despite '
         'having different party.')
 
