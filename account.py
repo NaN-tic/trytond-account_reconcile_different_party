@@ -5,8 +5,7 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 
-class Account:
-    __metaclass__ = PoolMeta
+class Account(metaclass=PoolMeta):
     __name__ = 'account.account'
 
     different_party_reconcile = fields.Boolean(
