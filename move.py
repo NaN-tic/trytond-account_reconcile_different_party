@@ -3,6 +3,8 @@
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
 from trytond.model import fields
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Line', 'Reconciliation']
 
@@ -36,15 +38,6 @@ class Line(metaclass=PoolMeta):
 class Reconciliation(metaclass=PoolMeta):
     __name__ = 'account.move.reconciliation'
 
-    @classmethod
-    def __setup__(cls):
-        super(Reconciliation, cls).__setup__()
-        cls._error_messages.update({
-                'reconciliation_has_party': ('You can not reconcile '
-                    'line "%(line)s" because account "%(account)s" has not '
-                    'different party reconciliation active or first '
-                    'reconciliation line the party is "%(party)s".'),
-                })
 
     @classmethod
     def check_lines(cls, reconciliations):
@@ -56,9 +49,10 @@ class Reconciliation(metaclass=PoolMeta):
                 if line.account.different_party_reconcile:
                     line.party = None
                 elif line.party and line.party != party:
-                    cls.raise_user_error('reconciliation_has_party', {
-                            'line': line.rec_name,
-                            'account': line.account.rec_name,
-                            'party': line.party.rec_name,
-                            })
+                    raise UserError(gettext(
+                    'account_reconcile_different_party.reconciliation_has_party',
+                            line=line.rec_name,
+                            account=line.account.rec_name,
+                            party=line.party.rec_name,
+                            ))
         super(Reconciliation, cls).check_lines(reconciliations)
